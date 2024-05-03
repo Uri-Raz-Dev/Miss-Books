@@ -1,0 +1,24 @@
+.main-header {
+    align-items: center;
+    padding: 1em;
+    background-color: var(--header-color);
+}
+
+.main-header .logo {
+    flex-grow: 1;
+    font-size: 36px;
+    color: var(--logo-color);
+    font-weight: bold;
+}
+
+.main-header .links-container {
+    column-gap: 1.25rem;
+    color: var(--links-color);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.main-header .links-container .active {
+    border-block-end: 5px var(--links-active-color) solid;
+    font-weight: bolder;
+}
