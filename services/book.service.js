@@ -9,7 +9,8 @@ export const bookService = {
     query,
     get,
     remove,
-    save
+    save,
+    getDefaultFilter
 }
 window.bs = bookService
 
@@ -48,12 +49,20 @@ function remove(bookId) {
     return storageService.remove(BOOK_KEY, bookId)
 }
 
+
+
+
 function save(book) {
     if (book.id) {
         return storageService.put(BOOK_KEY, book)
     } else {
         return storageService.post(BOOK_KEY, book)
     }
+}
+
+
+function getDefaultFilter(filterBy = { title: '', price: 0 }) {
+    return { title: filterBy.title, price: filterBy.price }
 }
 
 function _setNextPrevCarId(book) {
