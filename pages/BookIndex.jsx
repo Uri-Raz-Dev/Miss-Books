@@ -1,14 +1,17 @@
 import { bookService } from "../services/book.service.js"
 import { storageService } from "../services/async-storage.service.js"
 import { utilService } from "../services/util.service.js"
+import { BookList } from "../cmps/BookList.jsx"
 const { useState, useEffect, useRef } = React
 const { Link } = ReactRouterDOM
 
 export function BookIndex() {
 
-    const [books, setBooks] = useState(null)
+    const [books, setBooks] = useState([])
 
     const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
+
+    const [selectedBook, setSelectedBook] = useState(null)
 
     useEffect(() => {
         bookService.query(filterBy)
@@ -20,7 +23,7 @@ export function BookIndex() {
 
 
     function removeBook(bookId) {
-        carService.remove(bookId)
+        bookService.remove(bookId)
             .then(() => {
                 setBooks(prevBooks => prevBooks.filter(book => book.id !== bookId))
             })
@@ -38,6 +41,5 @@ export function BookIndex() {
     }
 
     return <section className="book-index">
-
-    </section>
+        {!selectedBook && <BookList books={books} onRemove={removeBook} onShowDetails={showBookDetails} />}    </section>
 }
