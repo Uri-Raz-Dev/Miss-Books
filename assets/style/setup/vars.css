@@ -1,7 +1,9 @@
 :root {
-  --bg-color: gray;
+  --bg-color: #F6F6F6;
   --header-color: #F4F1EA;
   --logo-color: #372213;
   --links-color: #847F7A;
   --links-active-color: #4E3431;
+  --price-color: rgb(44, 197, 44);
+  --sale-color: red;
 }

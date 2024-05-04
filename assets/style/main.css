@@ -9,6 +9,8 @@
 
 /* Components */
 @import 'cmps/AppHeader.css';
+@import 'cmps/BookList.css';
+@import 'cmps/BookPreview.css';
 
 /* Media Queries */
 /* @import 'mqs/example.css'; */

@@ -1,0 +1,39 @@
+.book-preview {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        'img '
+        'title'
+        'price'
+        'sale'
+        'description'
+    ;
+    gap: 1.25rem;
+}
+
+.book-preview h2 {
+    grid-area: title;
+    justify-self: center;
+}
+
+.book-preview img {
+    grid-area: img;
+}
+
+.book-preview p {
+    grid-area: description;
+    line-height: 2em;
+}
+
+.book-preview .price {
+    grid-area: price;
+    justify-self: center;
+    color: var(--price-color);
+}
+
+.book-preview .sale {
+    grid-area: sale;
+    justify-self: center;
+    color: var(--sale-color);
+    font-weight: bold;
+    font: 1.625rem;
+}

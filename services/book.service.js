@@ -81,7 +81,7 @@ function _createBook(title, price, isOnSale, currencyCode, idx) {
     const book = {
         id: utilService.makeId(),
         title,
-        description: utilService.makeLorem(10),
+        description: utilService.makeLorem(50),
         thumbnail: `BooksImages/${idx}.jpg`,
         listPrice: {
             amount: currencyCode === 'USD' ? price + '$' : price + '€',
