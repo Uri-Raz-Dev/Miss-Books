@@ -41,5 +41,6 @@ export function BookIndex() {
     }
 
     return <section className="book-index">
-        {!selectedBook && <BookList books={books} onRemove={removeBook} onShowDetails={showBookDetails} />}    </section>
+        {!selectedBook && <BookList books={books} onRemove={removeBook} onShowDetails={showBookDetails} />}
+    </section>
 }
