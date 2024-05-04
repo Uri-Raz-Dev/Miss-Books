@@ -13,6 +13,9 @@
 .book-preview h2 {
     grid-area: title;
     justify-self: center;
+    text-wrap: stable;
+    align-self: center;
+    font-size: 1.2em;
 }
 
 .book-preview img {
@@ -22,6 +25,8 @@
 .book-preview p {
     grid-area: description;
     line-height: 2em;
+    text-wrap: pretty;
+    font-size: 1em;
 }
 
 .book-preview .price {

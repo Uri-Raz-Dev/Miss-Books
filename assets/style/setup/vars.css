@@ -1,9 +1,10 @@
 :root {
-  --bg-color: #F6F6F6;
-  --header-color: #F4F1EA;
+  --bg-color: white;
+  --header-color: #efe7d5;
   --logo-color: #372213;
   --links-color: #847F7A;
   --links-active-color: #4E3431;
   --price-color: rgb(44, 197, 44);
   --sale-color: red;
+  --list-item-color: #F4F1EA;
 }

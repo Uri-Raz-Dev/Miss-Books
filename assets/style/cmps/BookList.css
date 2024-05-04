@@ -1,0 +1,29 @@
+.book {
+    position: relative;
+    flex-direction: column;
+    background-color: var(--list-item-color);
+    padding: 1em;
+    margin-inline: 1.25rem;
+    margin-block-end: 20px;
+
+}
+
+.book-list {
+    flex-direction: column;
+}
+
+.book .remove-book {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    border-radius: 50%;
+    border: none;
+    color: red;
+    font-weight: bolder;
+    font-size: 15px;
+}
+
+.book .book-details {
+    align-self: center;
+    width: min-content;
+}

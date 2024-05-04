@@ -1,13 +1,13 @@
 import { BookPreview } from "./BookPreview.jsx";
 
 export function BookList({ books, onRemove, onShowDetails }) {
-    return <section className="book-list">
-        <ul>
+    return <section className="book-section">
+        <ul className="book-list flex">
             {
-                books.map(book => <li key={book.id}>
+                books.map(book => <li className="book flex" key={book.id}>
                     <BookPreview book={book} />
-                    <button onClick={() => onRemove(book.id)} >x</button>
-                    <button onClick={() => onShowDetails(book)} >Details</button>
+                    <button className="remove-book" onClick={() => onRemove(book.id)} >x</button>
+                    <button className="book-details" onClick={() => onShowDetails(book)} >Details</button>
                 </li>)
             }
         </ul>
