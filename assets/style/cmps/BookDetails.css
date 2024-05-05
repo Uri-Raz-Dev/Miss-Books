@@ -40,8 +40,8 @@
 .book-details .price {
     grid-area: price;
     justify-self: center;
-    color: var(--price-color);
 }
+
 
 .book-details .sale {
     grid-area: sale;

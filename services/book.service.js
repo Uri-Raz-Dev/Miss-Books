@@ -125,7 +125,7 @@ function _createBooks() {
                     utilService.makeLorem(1)
                 ],
                 publishedDate: utilService.getRandomIntInclusive(1950, 2024),
-                description: utilService.makeLorem(20),
+                description: utilService.makeLorem(100),
                 pageCount: utilService.getRandomIntInclusive(20, 600),
                 categories: [ctgs[utilService.getRandomIntInclusive(0, ctgs.length - 1)]],
                 thumbnail: `BooksImages/${i + 1}.jpg`,
