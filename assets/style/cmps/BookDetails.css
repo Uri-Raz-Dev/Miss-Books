@@ -1,11 +1,12 @@
 .book-details {
     grid-template-columns: 1fr;
     grid-template-areas:
-        'img '
+        'img'
         'title'
+        'authors'
+        'published'
         'price'
         'sale'
-        'description'
     ;
     gap: 1.25rem;
 }
@@ -13,22 +14,27 @@
 .book-details h2 {
     grid-area: title;
     justify-self: center;
-    text-wrap: stable;
+    text-wrap: nowrap;
     align-self: center;
     font-size: 1.2em;
 }
 
-.book-details img {
+.book-details h3 {
+    grid-area: authors;
     justify-self: center;
+}
+
+.book-details img {
     grid-area: img;
+    justify-self: center;
     margin-block-start: 1.25rem;
 }
 
 .book-details p {
-    grid-area: description;
-    line-height: 2em;
-    text-wrap: pretty;
-    font-size: 1em;
+    grid-area: published;
+    /* line-height: 2em; */
+    /* text-wrap: pretty; */
+    /* font-size: 1em; */
 }
 
 .book-details .price {

@@ -1,11 +1,12 @@
 .book-preview {
     grid-template-columns: 1fr;
     grid-template-areas:
-        'img '
+        'img'
         'title'
+        'authors'
+        'published'
         'price'
         'sale'
-        'description'
     ;
     gap: 1.25rem;
 }
@@ -22,8 +23,15 @@
     grid-area: img;
 }
 
+.book-details h3 {
+    grid-area: authors;
+    justify-self: start;
+    color: var(--authors-color);
+}
+
 .book-preview p {
-    grid-area: description;
+    justify-self: start;
+    grid-area: published;
     line-height: 2em;
     text-wrap: pretty;
     font-size: 1em;
@@ -41,4 +49,5 @@
     color: var(--sale-color);
     font-weight: bold;
     font: 1.625rem;
+    margin-block-end: 1.25rem;
 }
