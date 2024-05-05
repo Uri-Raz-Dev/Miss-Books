@@ -3,6 +3,8 @@ import { storageService } from "../services/async-storage.service.js"
 import { utilService } from "../services/util.service.js"
 import { BookList } from "../cmps/BookList.jsx"
 import { BookFilter } from "../cmps/BookFilter.jsx"
+import { BookDetails } from "../cmps/BookDetails.jsx"
+
 const { useState, useEffect, useRef } = React
 const { Link } = ReactRouterDOM
 
@@ -44,5 +46,6 @@ export function BookIndex() {
     return <section className="book-index">
         <BookFilter filterBy={filterBy} onFilter={onSetFilterBy} />
         {!selectedBook && books.length === 0 || !books ? <p>NO BOOKS FOUND...</p> : <BookList books={books} onRemove={removeBook} onShowDetails={showBookDetails} />}
+        <BookDetails />
     </section>
 }
