@@ -92,21 +92,53 @@ function _createBook(title, price, isOnSale, currencyCode, idx) {
     return book
 }
 
+// function _createBooks() {
+//     let bookList = utilService.loadFromStorage(BOOK_KEY)
+//     if (!bookList || bookList.length === 0) {
+//         bookList = []
+
+
+//         bookList.push(_createBook('Gwent', 50, true, 'EUR', 1),
+//             _createBook('Between Here And Gone', 30, false, 'USD', 2),
+//             _createBook('Magic Lantern', 25, true, 'EUR', 3))
+
+
+//         utilService.saveToStorage(BOOK_KEY, bookList)
+//     }
+
+// }
+
+
+
 function _createBooks() {
+    const ctgs = ['Love', 'Fiction', 'Poetry', 'Computers', 'Religion']
+    const currencies = ['EUR', 'USD']
     let bookList = utilService.loadFromStorage(BOOK_KEY)
     if (!bookList || bookList.length === 0) {
         bookList = []
-
-
-        bookList.push(_createBook('Gwent', 50, true, 'EUR', 1),
-            _createBook('Between Here And Gone', 30, false, 'USD', 2),
-            _createBook('Magic Lantern', 25, true, 'EUR', 3))
-
-
-        utilService.saveToStorage(BOOK_KEY, bookList)
+        for (let i = 0; i < 20; i++) {
+            const book = {
+                id: utilService.makeId(),
+                title: utilService.makeLorem(2),
+                subtitle: utilService.makeLorem(4),
+                authors: [
+                    utilService.makeLorem(1)
+                ],
+                publishedDate: utilService.getRandomIntInclusive(1950, 2024),
+                description: utilService.makeLorem(20),
+                pageCount: utilService.getRandomIntInclusive(20, 600),
+                categories: [ctgs[utilService.getRandomIntInclusive(0, ctgs.length - 1)]],
+                thumbnail: `BooksImages/${i + 1}.jpg`,
+                language: "en",
+                listPrice: {
+                    amount: currencies[utilService.getRandomIntInclusive(0, currencies.length - 1)] === 'USD' ? utilService.getRandomIntInclusive(80, 500) + '$' : utilService.getRandomIntInclusive(80, 500) + '€',
+                    currencyCode: [currencies[utilService.getRandomIntInclusive(0, currencies.length - 1)]],
+                    isOnSale: Math.random() > 0.7
+                }
+            }
+            bookList.push(book)
+            utilService.saveToStorage(BOOK_KEY, bookList)
+        }
+        console.log('books', bookList)
     }
-
 }
-
-
-
