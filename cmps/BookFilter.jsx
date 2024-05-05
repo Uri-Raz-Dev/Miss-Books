@@ -18,8 +18,7 @@ export function BookFilter({ filterBy, onFilter }) {
         }))
     }
 
-    return <section className="book-filter">
-
+    return <section className="book-filter flex">
         <input onChange={handleChange} value={filterByToEdit.title} name="title" type="text" placeholder="Book Title" />
         <input onChange={handleChange} value={filterByToEdit.price === 0 ? '' : filterByToEdit.price} name="price" type="number" placeholder="Price" />
     </section>

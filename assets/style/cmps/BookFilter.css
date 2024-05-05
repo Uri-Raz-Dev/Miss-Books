@@ -1,0 +1,16 @@
+.book-filter {
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    margin-block: 1.25rem;
+    gap: 20px;
+}
+
+.book-filter input {
+    padding-inline: 0.4em;
+    border-radius: 10px;
+}
+
+.book-filter input:focus {
+    background-color: var(--input-bg-color);
+}

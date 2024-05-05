@@ -43,6 +43,6 @@ export function BookIndex() {
 
     return <section className="book-index">
         <BookFilter filterBy={filterBy} onFilter={onSetFilterBy} />
-        {!selectedBook && books.length === 0 ? <p>NO BOOKS FOUND</p> : <BookList books={books} onRemove={removeBook} onShowDetails={showBookDetails} />}
+        {!selectedBook && books.length === 0 || !books ? <p>NO BOOKS FOUND...</p> : <BookList books={books} onRemove={removeBook} onShowDetails={showBookDetails} />}
     </section>
 }
