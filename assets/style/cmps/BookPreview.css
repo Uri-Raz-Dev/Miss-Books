@@ -20,6 +20,7 @@
 
 .book-preview img {
     grid-area: img;
+    justify-self: center;
 }
 
 .book-preview p {
