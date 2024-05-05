@@ -12,6 +12,7 @@
 @import 'cmps/BookList.css';
 @import 'cmps/BookPreview.css';
 @import 'cmps/BookFilter.css';
+@import 'cmps/BookDetails.css';
 
 /* Media Queries */
 /* @import 'mqs/example.css'; */

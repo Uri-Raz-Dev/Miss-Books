@@ -1,0 +1,51 @@
+.book-details {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        'img '
+        'title'
+        'price'
+        'sale'
+        'description'
+    ;
+    gap: 1.25rem;
+}
+
+.book-details h2 {
+    grid-area: title;
+    justify-self: center;
+    text-wrap: stable;
+    align-self: center;
+    font-size: 1.2em;
+}
+
+.book-details img {
+    justify-self: center;
+    grid-area: img;
+    margin-block-start: 1.25rem;
+}
+
+.book-details p {
+    grid-area: description;
+    line-height: 2em;
+    text-wrap: pretty;
+    font-size: 1em;
+}
+
+.book-details .price {
+    grid-area: price;
+    justify-self: center;
+    color: var(--price-color);
+}
+
+.book-details .sale {
+    grid-area: sale;
+    justify-self: center;
+    color: var(--sale-color);
+    font-weight: bold;
+    font: 1.625rem;
+}
+
+.book-details .close {
+    justify-self: center;
+    width: min-content;
+}

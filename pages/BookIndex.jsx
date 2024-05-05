@@ -44,7 +44,7 @@ export function BookIndex() {
     }
 
     return <section className="book-index">
-        <BookFilter filterBy={filterBy} onFilter={onSetFilterBy} />
+        {!selectedBook && <BookFilter filterBy={filterBy} onFilter={onSetFilterBy} />}
         {!selectedBook && <BookList books={books} onRemove={removeBook} onShowDetails={showBookDetails} />}
         {selectedBook && <BookDetails book={selectedBook} onClose={() => setSelectedBook(null)} />}
     </section>
