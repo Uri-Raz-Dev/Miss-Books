@@ -27,8 +27,8 @@ function query(filterBy = {}) {
             if (filterBy.price) {
                 books = books.filter((book) => {
                     const { listPrice: { amount } } = book
-                    const bookPrice = amount
-                    return bookPrice
+                    const bookPrice = parseFloat(amount)
+                    return bookPrice <= filterBy.price
                 })
 
             }
