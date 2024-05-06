@@ -32,6 +32,20 @@ function query(filterBy = {}) {
                 })
 
             }
+            if (filterBy.date) {
+                books = books.filter((book) => {
+                    const { publishedDate } = book
+                    const bookDate = parseFloat(publishedDate)
+                    return bookDate <= filterBy.date
+                })
+
+            }
+
+            if (filterBy.authors) {
+                const regExp = new RegExp(filterBy.authors, 'i')
+
+                books = books.filter(book => regExp.test(book.authors))
+            }
             return books
         })
 }
@@ -61,8 +75,8 @@ function save(book) {
 }
 
 
-function getDefaultFilter(filterBy = { title: '', price: 0 }) {
-    return { title: filterBy.title, price: filterBy.price }
+function getDefaultFilter(filterBy = { title: '', price: 0, date: 0, authors: '' }) {
+    return { title: filterBy.title, price: filterBy.price, date: filterBy.date, authors: filterBy.authors }
 }
 
 function _setNextPrevCarId(book) {
@@ -75,39 +89,6 @@ function _setNextPrevCarId(book) {
         return book
     })
 }
-
-function _createBook(title, price, isOnSale, currencyCode, idx) {
-
-    const book = {
-        id: utilService.makeId(),
-        title,
-        description: utilService.makeLorem(50),
-        thumbnail: `BooksImages/${idx}.jpg`,
-        listPrice: {
-            amount: currencyCode === 'USD' ? price + '$' : price + '€',
-            currencyCode,
-            isOnSale
-        }
-    }
-    return book
-}
-
-// function _createBooks() {
-//     let bookList = utilService.loadFromStorage(BOOK_KEY)
-//     if (!bookList || bookList.length === 0) {
-//         bookList = []
-
-
-//         bookList.push(_createBook('Gwent', 50, true, 'EUR', 1),
-//             _createBook('Between Here And Gone', 30, false, 'USD', 2),
-//             _createBook('Magic Lantern', 25, true, 'EUR', 3))
-
-
-//         utilService.saveToStorage(BOOK_KEY, bookList)
-//     }
-
-// }
-
 
 
 function _createBooks() {
