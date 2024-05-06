@@ -1,6 +1,7 @@
 import { BookPrice } from "./BookPrice.jsx"
 import { BookPublishedDate } from "./BookPublishedDate.jsx"
 import { BookReadingDifficulty } from "./BookReadingDifficulty.jsx"
+import { LongText } from "./LongText.jsx"
 
 const { useState, useEffect, useRef } = React
 
@@ -14,7 +15,8 @@ export function BookDetails({ book, onClose }) {
 
         <h2>{title}</h2>
         <h3>{`by ${[authors]}`}</h3>
-        <p>{description}</p>
+        {/* <p>{description}</p> */}
+        <LongText book={book} />
         <span className="generes">{`Genres: ${[categories]}`}</span>
         <BookReadingDifficulty book={book} />
         <BookPublishedDate book={book} />
