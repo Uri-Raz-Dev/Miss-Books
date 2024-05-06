@@ -21,6 +21,7 @@
 
 .book-preview img {
     grid-area: img;
+    justify-self: center;
 }
 
 .book-details h3 {
