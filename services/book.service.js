@@ -82,10 +82,10 @@ function getDefaultFilter(filterBy = { title: '', price: 0, date: 0, authors: ''
 function _setNextPrevCarId(book) {
     return storageService.query(BOOK_KEY).then((books) => {
         const bookIdx = books.findIndex((currBook) => currBook.id === book.id)
-        const nextbook = books[bookIdx + 1] ? books[bookIdx + 1] : books[0]
-        const prevbook = books[bookIdx - 1] ? books[bookIdx - 1] : books[books.length - 1]
-        book.nextbookId = nextbook.id
-        book.prevbookId = prevbook.id
+        const nextBook = books[bookIdx + 1] ? books[bookIdx + 1] : books[0]
+        const prevBook = books[bookIdx - 1] ? books[bookIdx - 1] : books[books.length - 1]
+        book.nextBookId = nextBook.id
+        book.prevBookId = prevBook.id
         return book
     })
 }

@@ -9,25 +9,13 @@ const { Link } = ReactRouterDOM
 const { useParams, useNavigate } = ReactRouter
 
 export function BookDetails() {
-
-    const [books, setBooks] = useState([])
-
     const [book, setBook] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
-    const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
 
 
     const params = useParams()
     const navigate = useNavigate()
 
-
-    useEffect(() => {
-        bookService.query(filterBy)
-            .then(books => setBooks(books))
-            .catch(err => {
-                console.error('err:', err)
-            })
-    }, [filterBy])
 
 
     useEffect(() => {
@@ -46,18 +34,23 @@ export function BookDetails() {
     }, [params.bookId])
 
     if (isLoading) return <h3>Loading...</h3>
-    return <section className="book-details grid">
-        <img src={book.thumbnail} alt="book tumbnail" />
+    const { title, description, listPrice: { amount, isOnSale }, thumbnail, authors, categories } = book
 
-        <h2>{books.title}</h2>
-        <h3>{`by ${[books.authors]}`}</h3>
-        <LongText book={books} />
-        <span className="generes">{`Genres: ${[book.scategories]}`}</span>
-        <BookReadingDifficulty book={books} />
-        <BookPublishedDate book={books} />
-        <BookPrice book={books} />
-        {books.listPrice.isOnSale && <span className="sale">On Sale!</span>}
-        <button className="close" onClick={onClose}>close</button>
+    return <section className="book-details grid">
+        <img src={thumbnail} alt="book tumbnail" />
+
+        <h2>{title}</h2>
+        <h3>{`by ${[authors]}`}</h3>
+        <LongText book={book} />
+        <span className="generes">{`Genres: ${[categories]}`}</span>
+        <BookReadingDifficulty book={book} />
+        <BookPublishedDate book={book} />
+        <BookPrice book={book} />
+        {isOnSale && <span className="sale">On Sale!</span>}
+        <Link className="grid" to={"/book"}><button className="close">close</button>
+            <Link to={`/book/${book.prevBookId}`}><button>Prev</button></Link>
+            <Link to={`/book/${book.nextBookId}`}><button>Next</button></Link>
+        </Link>
 
     </section>
 }
