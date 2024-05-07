@@ -10,7 +10,8 @@ export const bookService = {
     get,
     remove,
     save,
-    getDefaultFilter
+    getDefaultFilter,
+    createBook
 }
 window.bs = bookService
 
@@ -64,6 +65,27 @@ function remove(bookId) {
 }
 
 
+export function createBook() {
+    const emptyBook = {
+        title: '',
+        subtitle: '',
+        authors: [''],
+        publishedDate: 0,
+        description: '',
+        pageCount: 0,
+        categories: [''],
+        thumbnail: '',
+        language: 'en',
+        listPrice: {
+            amount: 0,
+            currencyCode: '',
+            isOnSale: false
+        }
+    };
+
+    return emptyBook
+}
+
 
 
 function save(book) {
@@ -76,7 +98,10 @@ function save(book) {
 
 
 function getDefaultFilter(filterBy = { title: '', price: 0, date: 0, authors: '' }) {
-    return { title: filterBy.title, price: filterBy.price, date: filterBy.date, authors: filterBy.authors }
+    return {
+        title: filterBy.title, price: filterBy.price,
+        date: filterBy.date, authors: filterBy.authors
+    }
 }
 
 function _setNextPrevCarId(book) {
@@ -103,7 +128,7 @@ function _createBooks() {
                 title: utilService.makeLorem(2),
                 subtitle: utilService.makeLorem(4),
                 authors: [
-                    utilService.makeLorem(1)
+                    utilService.makeLorem(1), utilService.makeLorem(1)
                 ],
                 publishedDate: utilService.getRandomIntInclusive(1950, 2024),
                 description: utilService.makeLorem(100),
