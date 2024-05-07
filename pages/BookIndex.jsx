@@ -1,9 +1,6 @@
 import { bookService } from "../services/book.service.js"
-import { storageService } from "../services/async-storage.service.js"
-import { utilService } from "../services/util.service.js"
 import { BookList } from "../cmps/BookList.jsx"
 import { BookFilter } from "../cmps/BookFilter.jsx"
-import { BookDetails } from "../cmps/BookDetails.jsx"
 
 const { useState, useEffect, useRef } = React
 const { Link } = ReactRouterDOM
@@ -14,7 +11,6 @@ export function BookIndex() {
 
     const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
 
-    const [selectedBook, setSelectedBook] = useState(null)
 
     const [selectedFilter, setSelectedFilter] = useState('title')
 
@@ -45,13 +41,10 @@ export function BookIndex() {
         setSelectedFilter(newFilter)
     }
 
-    function showBookDetails(book) {
-        setSelectedBook(book)
-    }
+
 
     return <section className="book-index">
-        {!selectedBook && <BookFilter filterBy={filterBy} onFilter={onSetFilterBy} selectedFilter={selectedFilter} onSelectFilter={onSetSelectedFilter} />}
-        {!selectedBook && <BookList books={books} onRemove={removeBook} onShowDetails={showBookDetails} />}
-        {selectedBook && <BookDetails book={selectedBook} onClose={() => setSelectedBook(null)} />}
+        <BookFilter filterBy={filterBy} onFilter={onSetFilterBy} selectedFilter={selectedFilter} onSelectFilter={onSetSelectedFilter} />
+        <BookList books={books} onRemove={removeBook} />
     </section>
 }
