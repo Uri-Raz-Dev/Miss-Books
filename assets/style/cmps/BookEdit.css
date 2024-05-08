@@ -1,0 +1,17 @@
+.book-edit {
+    flex-direction: column;
+}
+
+.form-edit {
+    flex-direction: column;
+    gap: .625rem;
+}
+
+.book-edit h1 {
+    margin-block: 1.25rem;
+}
+
+.book-edit button {
+    align-self: center;
+    width: min-content;
+}

@@ -62,10 +62,10 @@ export function BookEdit() {
     let { title, subtitle, description, listPrice: { amount, isOnSale }, thumbnail, authors, categories
         , publishedDate, pageCount, language } = book
     console.log(description);
-    return <section className="book-edit">
+    return <section className="book-edit flex">
         <h1>{params.bookId ? 'Edit book' : 'Add book'}</h1>
 
-        <form onSubmit={onSave}>
+        <form className="form-edit flex" onSubmit={onSave}>
             <label htmlFor="title">Book Title</label>
             <input
                 onChange={handleChange} value={title}
@@ -89,12 +89,6 @@ export function BookEdit() {
                 id="category" name="category"
                 type="text" placeholder="categories" />
 
-            <label htmlFor="description">Description</label>
-            <textarea onChange={handleChange} value={description}
-                id="description" name="description"
-                type="text" rows={10} cols={40} placeholder="description" >
-
-            </textarea>
 
             <label htmlFor="page-count">Page Count</label>
             <input
@@ -126,6 +120,12 @@ export function BookEdit() {
                 accept="image/png, image/jpeg"
                 id="thumbnail" name="thumbnail"
                 type="file" />
+            <label htmlFor="description">Description</label>
+            <textarea onChange={handleChange} value={description}
+                id="description" name="description"
+                type="text" rows={10} cols={40} placeholder="description" >
+
+            </textarea>
 
             <button>Save</button>
         </form>

@@ -24,6 +24,5 @@
 }
 
 .book .book-details {
-    align-self: center;
-    width: min-content;
+    justify-content: center;
 }

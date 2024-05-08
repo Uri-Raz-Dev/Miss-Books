@@ -1,4 +1,5 @@
 .main-header {
+    position: sticky;
     align-items: center;
     padding: 1em;
     background-color: var(--header-color);
