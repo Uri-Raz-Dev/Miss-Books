@@ -30,7 +30,6 @@ export function BookEdit() {
     function handleChange({ target }) {
         const { type, name: prop } = target;
         let { value } = target;
-
         switch (type) {
             case 'range':
             case 'number':

@@ -1,7 +1,6 @@
 
 export function BookPreview({ book }) {
     const { title, subtitle, listPrice: { amount, isOnSale }, thumbnail, authors, publishedDate } = book
-    console.log(book);
     return <section className="book-preview grid">
         <img src={thumbnail} alt="book tumbnail" />
 
