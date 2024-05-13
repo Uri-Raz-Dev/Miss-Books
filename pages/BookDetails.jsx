@@ -39,7 +39,8 @@ export function BookDetails() {
         bookService.addReview(book.id, newReview)
             .then((review) => {
                 const reviews = [review, ...book.reviews]
-                setBook([{ ...book, reviews }])
+                setBook({ ...book, reviews })
+                console.log(book);
             })
     }
 
@@ -60,7 +61,6 @@ export function BookDetails() {
     const { title, thumbnail, authors, categories, reviews } = book
     const { isOnSale } = book.listPrice
 
-    console.log(book);
     return <section className="book-details grid">
         <img src={thumbnail} alt="book tumbnail" />
 

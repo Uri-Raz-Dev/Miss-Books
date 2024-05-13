@@ -161,6 +161,10 @@ function addReview(bookId, newReview) {
     utilService.saveToStorage(BOOK_KEY, books)
     return Promise.resolve(review)
 }
+// function addReview(bookId, newReview) {
+//     return storageService.get(BOOK_KEY, bookId)
+//         .then(book => book.reviews.unshift(newReview))
+// }
 
 function removeReview(bookId, reviewId) {
     let books = utilService.loadFromStorage(BOOK_KEY)

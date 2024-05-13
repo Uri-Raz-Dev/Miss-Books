@@ -7,6 +7,7 @@ export function AddReview({ onAddReview, toggleModal }) {
     const [review, setReview] = useState(bookService.emptyReview())
 
     function addNewReview(ev) {
+        console.log(ev)
         ev.preventDefault()
         onAddReview(review)
         toggleModal()
