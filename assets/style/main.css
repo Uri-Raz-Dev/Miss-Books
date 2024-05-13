@@ -14,6 +14,8 @@
 @import 'cmps/BookFilter.css';
 @import 'cmps/BookDetails.css';
 @import 'cmps/BookEdit.css';
+@import './cmps/AddReview.css';
+@import './cmps/StarRating.css';
 
 /* Media Queries */
 

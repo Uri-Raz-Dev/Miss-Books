@@ -55,3 +55,7 @@
     justify-self: center;
     width: min-content;
 }
+
+.review-details {
+    position: relative;
+}

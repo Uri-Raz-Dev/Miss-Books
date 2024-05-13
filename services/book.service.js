@@ -11,7 +11,10 @@ export const bookService = {
     remove,
     save,
     getDefaultFilter,
-    createBook
+    createBook,
+    addReview,
+    emptyReview,
+    removeReview
 }
 window.bs = bookService
 
@@ -130,6 +133,7 @@ function _createBooks() {
                 authors: [
                     utilService.makeLorem(1), utilService.makeLorem(1)
                 ],
+                reviews: [],
                 publishedDate: utilService.getRandomIntInclusive(1950, 2024),
                 description: utilService.makeLorem(100),
                 pageCount: utilService.getRandomIntInclusive(20, 600),
@@ -147,4 +151,27 @@ function _createBooks() {
         }
         console.log('books', bookList)
     }
+}
+
+function addReview(bookId, newReview) {
+    const books = utilService.loadFromStorage(BOOK_KEY)
+    const book = books.find(book => book.id === bookId)
+    const review = newReview
+    book.reviews.unshift(review)
+    utilService.saveToStorage(BOOK_KEY, books)
+    return Promise.resolve(review)
+}
+
+function removeReview(bookId, reviewId) {
+    let books = utilService.loadFromStorage(BOOK_KEY)
+    let book = books.find((book) => book.id === bookId)
+    const newReviews = book.reviews.filter((review) => review.id !== reviewId)
+    book.reviews = newReviews
+    utilService.saveToStorage(BOOK_KEY, books)
+    return Promise.resolve()
+}
+
+function emptyReview(id = utilService.makeId(),
+    fullName = 'book fan', readAt = new Date().toJSON().slice(0, 10), rating = 0, txt = '') {
+    return { id, fullName, readAt, rating, txt }
 }
