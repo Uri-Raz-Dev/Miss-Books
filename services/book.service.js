@@ -16,7 +16,8 @@ export const bookService = {
     createBook,
     addReview,
     emptyReview,
-    removeReview
+    removeReview,
+    queryDemoList
 }
 window.bs = bookService
 
@@ -184,6 +185,11 @@ function emptyReview(id = utilService.makeId(),
 
 
 
+function queryDemoList() {
+    return storageService.query(DEMO_KEY)
+}
+
+
 function _demoBooks() {
     let bookList = utilService.loadFromStorage(DEMO_KEY)
     if (!bookList || bookList.length === 0) {
@@ -195,7 +201,7 @@ function _demoBooks() {
                     etag: "Y8Xn8UwxEJo",
                     selfLink: "https://www.googleapis.com/books/v1/volumes/nBuA0hmspdMC",
                     volumeInfo: {
-                        title: "Effective JavaScript",
+                        title: "Return of The King",
                         authors: ["David Herman"],
                         publisher: "Addison-Wesley",
                         publishedDate: "2012-11-26",
