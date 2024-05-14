@@ -17,7 +17,9 @@ export const bookService = {
     addReview,
     emptyReview,
     removeReview,
-    queryDemoList
+    queryDemoList,
+    addDemoBook,
+    saveDemoBook
 }
 window.bs = bookService
 
@@ -185,8 +187,19 @@ function emptyReview(id = utilService.makeId(),
 
 
 
+function saveDemoBook(book) {
+    return storageService.postGoogle(BOOK_KEY, book)
+}
+
+function addDemoBook(bookId) {
+    return storageService.get(DEMO_KEY, bookId)
+        .then((book) => saveDemoBook(book))
+}
+
+
 function queryDemoList() {
     return storageService.query(DEMO_KEY)
+
 }
 
 
@@ -329,7 +342,34 @@ function _demoBooks() {
                     }
                 }
             ]
+        const editBookList = bookList.map(book => {
+            const { id } = book
+            const { title, subtitle, publishedDate, description, pageCount, authors, language, imageLinks, categories } = book.volumeInfo
+            const thumbnail = imageLinks && imageLinks.thumbnail
 
-        utilService.saveToStorage(DEMO_KEY, bookList)
+            const currencies = ['EUR', 'USD']
+
+            const bookDetails = {
+                id: id,
+                title: title,
+                subtitle: subtitle,
+                authors: authors,
+                reviews: [],
+                publishedDate: publishedDate,
+                description: description,
+                pageCount: pageCount,
+                categories: categories,
+                thumbnail: thumbnail,
+                language: language,
+                listPrice: {
+                    amount: currencies[utilService.getRandomIntInclusive(0, currencies.length - 1)] === 'USD' ? utilService.getRandomIntInclusive(80, 500) + '$' : utilService.getRandomIntInclusive(80, 500) + '€',
+                    currencyCode: [currencies[utilService.getRandomIntInclusive(0, currencies.length - 1)]],
+                    isOnSale: Math.random() > 0.7
+                }
+            }
+            return bookDetails
+        })
+        utilService.saveToStorage(DEMO_KEY, editBookList)
+        return editBookList
     }
 }
