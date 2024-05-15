@@ -197,9 +197,17 @@ function addDemoBook(bookId) {
 }
 
 
-function queryDemoList() {
+function queryDemoList(filterBy = {}) {
     return storageService.query(DEMO_KEY)
+        .then(books => {
+            if (filterBy.title) {
+                const regExp = new RegExp(filterBy.title, 'i')
 
+                books = books.filter(book => regExp.test(book.title))
+
+            }
+            return books
+        })
 }
 
 

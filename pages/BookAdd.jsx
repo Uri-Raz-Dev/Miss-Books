@@ -5,13 +5,14 @@ import { BookAddPreview } from "../cmps/BookAddPreview.jsx"
 import { bookService } from "../services/book.service.js"
 export function BookAdd() {
     const navigate = useNavigate()
+
     const [books, setBooks] = useState([])
+    const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
     useEffect(() => {
-        bookService.queryDemoList()
+        bookService.queryDemoList(filterBy)
             .then(books => setBooks(books))
 
-    }, [])
-    console.log(books)
+    }, [filterBy])
 
     function onAddBook(bookId) {
         bookService.query()
@@ -29,7 +30,27 @@ export function BookAdd() {
             })
     }
 
+
+    function debounce(func, timeout = 3000) {
+        let timer;
+        return (...args) => {
+            clearTimeout(timer)
+            timer = setTimeout(() => {
+                func.apply(this, args)
+            }, timeout)
+        }
+    }
+
+
+    function handleChange(event) {
+        const { name: prop, value } = event.target
+        setFilterBy(prevFilter => ({ ...prevFilter, [prop]: value }))
+    }
+    const processChange = debounce((event) => handleChange(event))
+
     return <section className="add-google-book">
+        <input className="search-google-books" onKeyUp={processChange} type="text"
+            name="title" placeholder="find new books!" />
         <ul className="google-book-list">
             {books.map(book => {
 
