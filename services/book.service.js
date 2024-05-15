@@ -3,6 +3,7 @@ import { utilService } from "./util.service.js"
 import { storageService } from "./async-storage.service.js"
 
 const BOOK_KEY = 'bookDB'
+const GOOGLE_BOOK_KEY = 'googleBookDB'
 const DEMO_KEY = 'demoDB'
 _createBooks()
 _demoBooks()
@@ -210,6 +211,17 @@ function queryDemoList(filterBy = {}) {
         })
 }
 
+
+// function addGoogleBooks(txt) {
+//     let bookList = utilService.loadFromStorage(GOOGLE_BOOK_KEY)
+//     if (bookList[txt]) {
+//         return Promise.resolve(bookList[txt])
+//     }
+
+//     return axios.get(`https://www.googleapis.com/books/v1/volumes?q=${txt}+intitle:keyes&key=AIzaSyARpbTsP-vfn4t0C0QJjNNpHGjZ3wqWkHI`
+//     )
+//     .then(book=>)
+// }
 
 function _demoBooks() {
     let bookList = utilService.loadFromStorage(DEMO_KEY)
