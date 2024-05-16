@@ -6,8 +6,7 @@ const BOOK_KEY = 'bookDB'
 const GOOGLE_BOOK_KEY = 'googleBookDB'
 const DEMO_KEY = 'demoDB'
 _createBooks()
-_demoBooks()
-
+// _demoBooks()
 export const bookService = {
     query,
     get,
@@ -18,9 +17,10 @@ export const bookService = {
     addReview,
     emptyReview,
     removeReview,
-    queryDemoList,
-    addDemoBook,
-    saveDemoBook
+    queryGoogleList,
+    addGoogleBook,
+    saveGoogleBook,
+    getGoogleBooks
 }
 window.bs = bookService
 
@@ -64,7 +64,7 @@ function query(filterBy = {}) {
 function get(bookId) {
     return storageService.get(BOOK_KEY, bookId)
         .then(book => {
-            book = _setNextPrevCarId(book)
+            book = _setNextPrevBookId(book)
             return book
         })
 }
@@ -113,7 +113,7 @@ function getDefaultFilter(filterBy = { title: '', price: 0, date: 0, authors: ''
     }
 }
 
-function _setNextPrevCarId(book) {
+function _setNextPrevBookId(book) {
     return storageService.query(BOOK_KEY).then((books) => {
         const bookIdx = books.findIndex((currBook) => currBook.id === book.id)
         const nextBook = books[bookIdx + 1] ? books[bookIdx + 1] : books[0]
@@ -188,18 +188,18 @@ function emptyReview(id = utilService.makeId(),
 
 
 
-function saveDemoBook(book) {
+function saveGoogleBook(book) {
     return storageService.postGoogle(BOOK_KEY, book)
 }
 
-function addDemoBook(bookId) {
-    return storageService.get(DEMO_KEY, bookId)
-        .then((book) => saveDemoBook(book))
+function addGoogleBook(bookId) {
+    return storageService.get(GOOGLE_BOOK_KEY, bookId)
+        .then((book) => { saveGoogleBook(book) })
 }
 
+function queryGoogleList(filterBy = {}) {
+    return storageService.query(GOOGLE_BOOK_KEY)
 
-function queryDemoList(filterBy = {}) {
-    return storageService.query(DEMO_KEY)
         .then(books => {
             if (filterBy.title) {
                 const regExp = new RegExp(filterBy.title, 'i')
@@ -212,16 +212,50 @@ function queryDemoList(filterBy = {}) {
 }
 
 
-// function addGoogleBooks(txt) {
-//     let bookList = utilService.loadFromStorage(GOOGLE_BOOK_KEY)
-//     if (bookList[txt]) {
-//         return Promise.resolve(bookList[txt])
-//     }
+function getGoogleBooks(txt = 'Return of the king') {
+    let bookList = utilService.loadFromStorage(GOOGLE_BOOK_KEY);
 
-//     return axios.get(`https://www.googleapis.com/books/v1/volumes?q=${txt}+intitle:keyes&key=AIzaSyARpbTsP-vfn4t0C0QJjNNpHGjZ3wqWkHI`
-//     )
-//     .then(book=>)
-// }
+    if (bookList && bookList[txt]) {
+        return Promise.resolve(bookList[txt])
+    }
+
+
+    return axios.get(`https://www.googleapis.com/books/v1/volumes?q=${txt}+intitle:keyes&key=AIzaSyARpbTsP-vfn4t0C0QJjNNpHGjZ3wqWkHI`)
+        .then(book => {
+            const books = book.data.items.map(book => {
+                const { id } = book
+                const { title, subtitle, publishedDate, description, pageCount, authors, language, imageLinks, categories } = book.volumeInfo
+                const thumbnail = imageLinks && imageLinks.thumbnail
+
+                const currencies = ['EUR', 'USD']
+
+                const bookDetails = {
+                    id: id,
+                    title: title,
+                    subtitle: subtitle ? subtitle : utilService.makeLorem(4),
+                    authors: authors ? authors : [
+                        utilService.makeLorem(1), utilService.makeLorem(1)
+                    ],
+                    reviews: [],
+                    publishedDate: publishedDate ? publishedDate : utilService.getRandomIntInclusive(1950, 2024),
+                    description: description ? description : utilService.makeLorem(100),
+                    pageCount: pageCount,
+                    categories: categories,
+                    thumbnail: thumbnail ? thumbnail : `BooksImages/1.jpg`,
+                    language: language ? language : 'en',
+                    listPrice: {
+                        amount: currencies[utilService.getRandomIntInclusive(0, currencies.length - 1)] === 'USD' ? utilService.getRandomIntInclusive(80, 500) + '$' : utilService.getRandomIntInclusive(80, 500) + '€',
+                        currencyCode: [currencies[utilService.getRandomIntInclusive(0, currencies.length - 1)]],
+                        isOnSale: Math.random() > 0.7
+                    }
+                }
+                return bookDetails
+            })
+            utilService.saveToStorage(GOOGLE_BOOK_KEY, books)
+            return books
+        })
+}
+
 
 function _demoBooks() {
     let bookList = utilService.loadFromStorage(DEMO_KEY)

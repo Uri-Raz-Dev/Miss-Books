@@ -4,7 +4,8 @@ export const storageService = {
     post,
     put,
     remove,
-    postGoogle
+    postGoogle,
+    getGoogleBook
 }
 
 function query(entityType, delay = 200) {
@@ -12,12 +13,28 @@ function query(entityType, delay = 200) {
     return new Promise(resolve => setTimeout(() => resolve(entities), delay))
 }
 
+
+
 function get(entityType, entityId) {
-    return query(entityType).then(entities => {
-        const entity = entities.find(entity => entity.id === entityId)
-        if (!entity) throw new Error(`Get failed, cannot find entity with id: ${entityId} in: ${entityType}`)
-        return entity
-    })
+    return query(entityType)
+        .then(entities => {
+            const entity = entities.find(entity => entity.id === entityId)
+            if (!entity) throw new Error(`Get failed, cannot find entity with id: ${entityId} in: ${entityType}`)
+            return entity
+        })
+}
+function getGoogleBook(entityType, entityId) {
+    return query(entityType)
+        .then(book => {
+            const getKey = Object.keys(book)
+            const getBooks = getKey[book]
+            return getBooks
+        })
+        .then(entities => {
+            const entity = entities.find(entity => entity.id === entityId)
+            if (!entity) throw new Error(`Get failed, cannot find entity with id: ${entityId} in: ${entityType}`)
+            return entity
+        })
 }
 
 function post(entityType, newEntity) {

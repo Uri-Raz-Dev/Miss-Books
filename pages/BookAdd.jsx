@@ -9,7 +9,7 @@ export function BookAdd() {
     const [books, setBooks] = useState([])
     const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
     useEffect(() => {
-        bookService.queryDemoList(filterBy)
+        bookService.queryGoogleList(filterBy)
             .then(books => setBooks(books))
 
     }, [filterBy])
@@ -17,6 +17,7 @@ export function BookAdd() {
     function onAddBook(bookId) {
         bookService.query()
             .then((books) => {
+
                 const googleBook = books.some(book => book.id === bookId)
                 if (googleBook) {
                     console.log('Book already exists in the list')
@@ -24,8 +25,8 @@ export function BookAdd() {
                 }
 
 
-                bookService.queryDemoList()
-                    .then(() => bookService.addDemoBook(bookId))
+                bookService.queryGoogleList()
+                    .then(() => bookService.addGoogleBook(bookId))
                     .then(() => navigate('/book'))
             })
     }
@@ -40,11 +41,15 @@ export function BookAdd() {
             }, timeout)
         }
     }
-
+    console.log(books);
 
     function handleChange(event) {
         const { name: prop, value } = event.target
         setFilterBy(prevFilter => ({ ...prevFilter, [prop]: value }))
+
+        bookService.getGoogleBooks(value)
+            .then(books => setBooks(books))
+
     }
     const processChange = debounce((event) => handleChange(event))
 
@@ -52,10 +57,11 @@ export function BookAdd() {
         <input className="search-google-books" onKeyUp={processChange} type="text"
             name="title" placeholder="find new books!" />
         <ul className="google-book-list">
-            {books.map(book => {
+            {books.map(book => (
+                <BookAddPreview key={book.id} book={book} onAddBook={onAddBook} />
+            ))
+            }
 
-                return < BookAddPreview key={book.id} book={book} onAddBook={onAddBook} />
-            })}
         </ul>
     </section>
 }
