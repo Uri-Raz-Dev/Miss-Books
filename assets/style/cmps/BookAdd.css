@@ -1,0 +1,17 @@
+.add-google-book {
+    background-color: #efe7d575;
+    margin-block-start: 1.25rem;
+    padding: 1em;
+}
+
+.add-google-book ul li {
+    display: flex;
+    justify-content: space-between;
+    margin-block: 50px;
+}
+
+.save-google-book {
+    height: min-content;
+    font-weight: bolder;
+    font-size: 16px;
+}

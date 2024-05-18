@@ -44,8 +44,10 @@ export function BookIndex() {
 
 
     return <section className="book-index flex">
-        <Link className="add-book" to="/book/edit"><button>Add a Book</button></Link>
-        <Link className="discover-book" to="/book/discover"><button>Discover a Book</button></Link>
+        <div className="manage-books flex">
+            <Link className="add-book" to="/book/edit"><button>Add a Book</button></Link>
+            <Link className="discover-book" to="/book/discover"><button>Discover a Book</button></Link>
+        </div>
         <BookFilter filterBy={filterBy} onFilter={onSetFilterBy} selectedFilter={selectedFilter} onSelectFilter={onSetSelectedFilter} />
         <BookList books={books} onRemove={removeBook} />
     </section>

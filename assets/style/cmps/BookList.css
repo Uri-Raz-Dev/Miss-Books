@@ -5,11 +5,11 @@
     padding: 1em;
     margin-inline: 1.25rem;
     margin-block-end: 20px;
-
 }
 
 .book-list {
     flex-direction: column;
+    align-items: center;
 }
 
 .book .remove-book {

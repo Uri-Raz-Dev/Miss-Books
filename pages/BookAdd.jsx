@@ -1,10 +1,10 @@
 const { useState, useEffect, useRef } = React
 const { useParams, useNavigate } = ReactRouter
+import { BookIndex } from "./BookIndex.jsx"
 
 import { BookAddPreview } from "../cmps/BookAddPreview.jsx"
 import { bookService } from "../services/book.service.js"
 export function BookAdd() {
-    const navigate = useNavigate()
 
     const [books, setBooks] = useState([])
     const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
@@ -27,7 +27,10 @@ export function BookAdd() {
 
                 bookService.queryGoogleList()
                     .then(() => bookService.addGoogleBook(bookId))
-                    .then(() => navigate('/book'))
+                    .then((book) => {
+                        BookIndex.setBooks(book)
+                    })
+
             })
     }
 

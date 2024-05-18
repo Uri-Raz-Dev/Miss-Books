@@ -18,7 +18,26 @@
     justify-content: center;
 }
 
-.add-book {
+/* .add-book {
     align-self: center;
     margin-block-start: 1.25rem;
+} */
+
+.manage-books {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+    gap: 1.85rem;
+}
+
+button:not(.remove-book, .btn-toggle-modal),
+input,
+textarea,
+input:focus,
+select {
+    background-color: var(--button-bg-color);
+    border-radius: 5px;
+    font-weight: bolder;
+    color: var(--button-color);
 }

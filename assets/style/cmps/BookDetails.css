@@ -9,7 +9,11 @@
         'sale'
     ;
     gap: 1.25rem;
+    background-color: #efe7d575;
+    margin-block-start: 2em;
 }
+
+
 
 .book-details h2 {
     grid-area: title;
@@ -32,6 +36,8 @@
 
 .book-details p {
     grid-area: published;
+    line-height: 1.5em;
+    line-break: strict;
     /* line-height: 2em; */
     /* text-wrap: pretty; */
     /* font-size: 1em; */
@@ -54,8 +60,36 @@
 .book-details .close {
     justify-self: center;
     width: min-content;
+    margin-bottom: 1.25rem;
 }
 
 .review-details {
     position: relative;
+}
+
+.add-review-btn {
+    justify-self: center;
+    width: fit-content;
+    text-wrap: nowrap;
+}
+
+.book-nav {
+    justify-content: space-between;
+    margin-inline: 1em;
+}
+
+button,
+a,
+.read-more:hover {
+    cursor: pointer;
+}
+
+.loading {
+    position: absolute;
+    transform: translate(50%, 50%);
+    color: var(--loading-color);
+}
+
+.read-more {
+    color: #a38338;
 }

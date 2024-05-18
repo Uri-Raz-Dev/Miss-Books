@@ -10,6 +10,43 @@ const { useState, useEffect, useRef } = React
 const { Link } = ReactRouterDOM
 const { useParams, useNavigate } = ReactRouter
 
+const loading = (
+    <svg width="140" height="140" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <style>
+            {`
+        .spinner_aj0A {
+          transform-origin: center;
+          animation: spinner_KYSC .75s infinite linear;
+        }
+        @keyframes spinner_KYSC {
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+      `}
+        </style>
+        <path
+            d="M12,4a8,8,0,0,1,7.89,6.7A1.53,1.53,0,0,0,21.38,12h0a1.5,1.5,0,0,0,1.48-1.75,11,11,0,0,0-21.72,0A1.5,1.5,0,0,0,2.62,12h0a1.53,1.53,0,0,0,1.49-1.3A8,8,0,0,1,12,4Z"
+            className="spinner_aj0A"
+        />
+    </svg>
+);
+
+const MyComponent = ({ isLoading }) => {
+    if (isLoading) {
+        return <div className="loading">{loading}</div>;
+    }
+
+    return (
+        <div>
+            {/* Other content when not loading */}
+        </div>
+    );
+};
+
+export default MyComponent;
+
+
 export function BookDetails() {
     const [book, setBook] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
@@ -57,7 +94,7 @@ export function BookDetails() {
         setToggleReviewModal(prevAddReview => !prevAddReview)
     }
 
-    if (isLoading) return <h3>Loading...</h3>
+    if (isLoading) return <div className="loading">{loading}</div>
     const { title, thumbnail, authors, categories, reviews } = book
     const { isOnSale } = book.listPrice
 
@@ -73,10 +110,12 @@ export function BookDetails() {
         <BookPrice book={book} />
         {isOnSale && <span className="sale">On Sale!</span>}
         <Link className="grid" to={"/book"}><button className="close">close</button>
-            <Link to={`/book/${book.prevBookId}`}><button>Prev</button></Link>
-            <Link to={`/book/${book.nextBookId}`}><button>Next</button></Link>
+            <nav className="book-nav flex">
+                <Link className="prev" to={`/book/${book.prevBookId}`}><button>Prev</button></Link>
+                <Link className="next" to={`/book/${book.nextBookId}`}><button>Next</button></Link>
+            </nav>
         </Link >
-        <button onClick={toggleModal}>Add review</button>
+        <button onClick={toggleModal} className="add-review-btn">Add review</button>
 
         {toggleReviewModal && <AddReview onAddReview={onAddReview} toggleModal={toggleModal} />}
 

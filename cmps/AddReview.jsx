@@ -77,7 +77,7 @@ export function AddReview({ onAddReview, toggleModal }) {
                     id="txt" name="txt"
                     cols='30' rows='10' placeholder="Type here..."
                 ></textarea>
-                <button>Add Review</button>
+                <button >Add Review</button>
 
             </form>
         </div>

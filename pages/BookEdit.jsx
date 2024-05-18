@@ -28,17 +28,17 @@ export function BookEdit() {
     }
 
     function handleChange({ target }) {
-        const { type, name: prop } = target;
-        let { value } = target;
+        const { type, name: prop } = target
+        let { value } = target
         switch (type) {
             case 'range':
             case 'number':
-                value = +value;
-                break;
+                value = +value
+                break
 
             case 'checkbox':
-                value = target.checked;
-                break;
+                value = target.checked
+                break
 
             case 'file':
                 const file = target.files[0]
@@ -56,7 +56,7 @@ export function BookEdit() {
                 return
         }
 
-        setBook(prevBook => ({ ...prevBook, [prop]: value }));
+        setBook(prevBook => ({ ...prevBook, [prop]: value }))
     }
 
     let { title, subtitle, description, listPrice: { amount, isOnSale }, thumbnail, authors, categories
