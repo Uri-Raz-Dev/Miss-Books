@@ -1,5 +1,5 @@
 .add-google-book {
-    background-color: #efe7d575;
+    background-image: var(--page-bg-color);
     margin-block-start: 1.25rem;
     padding: 1em;
 }

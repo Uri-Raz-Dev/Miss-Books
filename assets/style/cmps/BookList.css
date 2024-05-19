@@ -1,7 +1,7 @@
 .book {
     position: relative;
     flex-direction: column;
-    background-color: var(--list-item-color);
+    background-image: var(--page-bg-color);
     padding: 1em;
     margin-inline: 1.25rem;
     margin-block-end: 20px;
@@ -23,6 +23,8 @@
     font-size: 15px;
 }
 
-.book .book-details {
-    justify-content: center;
+.book .book-details-btns {
+    justify-content: space-around;
+    align-items: center;
+    color: red;
 }

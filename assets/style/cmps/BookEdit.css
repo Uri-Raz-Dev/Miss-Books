@@ -1,6 +1,6 @@
 .book-edit {
     flex-direction: column;
-    background-color: #efe7d575;
+    background-image: var(--page-bg-color);
     padding: 1em;
     margin-block-start: 1.25rem;
 }

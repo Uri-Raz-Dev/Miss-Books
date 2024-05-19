@@ -109,7 +109,7 @@ export function BookDetails() {
         <BookPublishedDate book={book} />
         <BookPrice book={book} />
         {isOnSale && <span className="sale">On Sale!</span>}
-        <Link className="grid" to={"/book"}><button className="close">close</button>
+        <Link className="grid" to={"/book"}><button className="close">Close</button>
             <nav className="book-nav flex">
                 <Link className="prev" to={`/book/${book.prevBookId}`}><button>Prev</button></Link>
                 <Link className="next" to={`/book/${book.nextBookId}`}><button>Next</button></Link>

@@ -32,12 +32,17 @@
 }
 
 button:not(.remove-book, .btn-toggle-modal),
-input,
-textarea,
+
 input:focus,
-select {
+select:focus,
+textarea:focus {
     background-color: var(--button-bg-color);
     border-radius: 5px;
     font-weight: bolder;
     color: var(--button-color);
+}
+
+.discover-book button,
+.add-book button {
+    background-color: #EFE7D5;
 }

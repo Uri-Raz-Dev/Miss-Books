@@ -4,11 +4,16 @@
   --logo-color: #372213;
   --links-color: #847F7A;
   --links-active-color: #4E3431;
-  --price-color: rgb(44, 197, 44);
+  --price-color: rgb(11, 105, 11);
   --sale-color: red;
-  --list-item-color: #F4F1EA;
-  --input-bg-color: #efe7d5;
+  /* --list-item-color: li; */
+  /* --list-item-color: #F4F1EA; */
+  /* --input-bg-color: #efe7d5; */
   --authors-color: #4f4f4d;
-  --button-bg-color: #ecce89af;
-  --button-color: #616160;
+  --button-bg-color: color-mix(in lch, #06b92d, #fbf306d5);
+  /* --button-bg-color: color-mix(in lch, #f9d50d, #f90b52c2); */
+  ;
+  --button-color: color-mix(in lch, black, rgb(5, 60, 89));
+  --page-bg-color: linear-gradient(#F4F1EA, #f0a24a);
+
 }

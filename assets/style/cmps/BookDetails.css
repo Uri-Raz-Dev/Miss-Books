@@ -9,8 +9,9 @@
         'sale'
     ;
     gap: 1.25rem;
-    background-color: #efe7d575;
+    background-image: var(--page-bg-color);
     margin-block-start: 2em;
+    padding-inline: 1em;
 }
 
 
@@ -91,5 +92,6 @@ a,
 }
 
 .read-more {
-    color: #a38338;
+    color: rgb(1, 95, 1);
+    font-weight: bolder;
 }
